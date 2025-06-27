@@ -1,0 +1,12 @@
+<mat-card class="product-card-custom">
+  <mat-card-header>
+    <mat-card-title class="mat-card-title">{{ product.name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="flex flex-col items-center">
+    <!-- Image with classes for sizing, object fit, and rounded corners -->
+    <img [src]="product.url" [alt]="product.name" class="w-full h-24 object-cover rounded-md mb-4">
+    <p class="text-gray-700 mb-2">${{ product.price | number:'1.2-2' }}</p>
+    <p class="text-gray-500 text-sm mb-4 text-center">{{ product.description.substring(0, 100) }}...</p>
+    <button class="btn btn-primary mt-auto" (click)="onAddToCart()">Add to Cart</button>
+  </mat-card-content>
+</mat-card>
