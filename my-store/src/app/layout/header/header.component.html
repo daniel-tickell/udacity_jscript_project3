@@ -1,3 +1,14 @@
- <div class="header">
-    <p>{{ title }}</p>
-</div> 
+<header >
+  <div>
+    <h1 class="header">{{ title }}</h1>
+  </div>
+
+  <div class="cart-badge">
+    <a routerLink="/cart" class="text-text-light hover:text-secondary-color transition-colors flex items-center">
+      <span class="text-3xl">🛒</span>
+      <span *ngIf="cartItemCount$ | async as count" class="absolute -top-2 -right-2 bg-red-600 text-black text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center border-2 border-primary-color">
+        {{ count }}
+      </span>
+    </a>
+  </div>
+</header>
