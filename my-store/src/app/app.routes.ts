@@ -9,8 +9,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 export const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
   { path: 'products', component: ProductListComponent, title: 'Products' },
-  { path: 'product/:id', component: ProductItemDetailComponent, title: 'Product Detail' },
-  { path: 'cart', component: CartComponent, title: 'Shopping Cart' },
+  //{ path: 'product/:id', component: ProductItemDetailComponent, title: 'Product Detail' },
   { path: 'confirmation', component: ConfirmationComponent, title: 'Order Confirmation' },
   { path: '**', redirectTo: 'products' }
 ];

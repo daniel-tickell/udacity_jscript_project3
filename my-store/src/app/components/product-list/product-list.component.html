@@ -1,13 +1,22 @@
 <div class="container py-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">Our Products</h2>
+
   <div *ngIf="isLoading" class="text-center text-lg text-primary-color">Loading products...</div>
   <div *ngIf="errorMessage" class="text-center text-lg text-red-600">{{ errorMessage }}</div>
 
   <div *ngIf="!isLoading && !errorMessage && products.length === 0" class="text-center text-lg text-gray-600">
     No products found.
   </div>
+
   <div *ngIf="products.length > 0" class="product-grid-container">
     <ng-container *ngFor="let product of products">
-      <app-product-item [product]="product"></app-product-item>
+      <app-product-item [product]="product" (viewDetails)="onViewDetails($event)"></app-product-item>
     </ng-container>
   </div>
+
+  <app-product-item-detail
+    *ngIf="showDetailBox && selectedProduct"
+    [product]="selectedProduct"
+    (closeDetails)="onCloseDetails()">
+  </app-product-item-detail>
 </div>

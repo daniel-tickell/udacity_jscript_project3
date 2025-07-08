@@ -1,0 +1,45 @@
+<div class="container py-6">
+  <h2 class="text-3xl font-bold mb-6 text-center">Your Shopping Cart</h2>
+
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <div *ngIf="cartItems.length === 0" class="text-center text-lg text-gray-600">
+      Your cart is empty. <a routerLink="/products" class="text-primary-color hover:underline">Start shopping!</a>
+    </div>
+
+<div *ngIf="cartItems.length > 0" class="card p-6 mb-8">
+      <div class="grid grid-cols-1 gap-6">
+        <div *ngFor="let item of cartItems" class="flex items-center space-x-4 border-b pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0">
+          <img [src]="item.url" [alt]="item.name" class="cart-item-image object-cover rounded-md">
+          <div class="flex flex-col flex-grow">
+            <h3 class="text-lg font-semibold">{{ item.name }}</h3>
+            <div>
+              <p class="text-gray-700">${{ item.price | number:'1.2-2' }} x {{ item.quantity }}</p>
+              <p class="text-gray-900 font-bold">Subtotal: ${{ (item.price * item.quantity) | number:'1.2-2' }}</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button (click)="decreaseQuantity(item)" class="btn btn-outline p-1 w-8 h-8 flex items-center justify-center">-</button>
+            <span class="font-bold">{{ item.quantity }}</span>
+            <button (click)="increaseQuantity(item)" class="btn btn-secondary-add p-1 w-8 h-8 flex items-center justify-center">+</button>
+            <button (click)="removeItem(item.id)" class="btn btn-secondary-rem p-1 ml-2">Remove</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-border-color flex justify-between items-center">
+        <div>
+          <p class="text-xl font-bold">Total Items: {{ cartTotalItems$ | async }}</p>
+          <p class="text-2xl font-bold text-primary-color">Total Price: ${{ cartTotalPrice$ | async | number:'1.2-2' }}</p>
+        </div>
+        <div class="flex space-x-4">
+          <button (click)="clearCart()" class="btn btn-primary-clear bg-red-600 hover:bg-red-700">Clear Cart</button>
+          <button (click)="placeOrder()" class="btn btn-primary-order bg-primary-color hover:bg-blue-700">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="cartItems$ === undefined" class="text-center text-lg text-gray-600">
+    Loading cart...
+  </div>
+</div>

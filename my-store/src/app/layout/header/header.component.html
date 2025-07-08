@@ -4,10 +4,13 @@
   </div>
 
   <div class="cart-badge">
-    <a routerLink="/cart" class="text-text-light hover:text-secondary-color transition-colors flex items-center">
+    <a class="text-text-light hover:text-secondary-color transition-colors flex items-center cursor-pointer" (click)="onCartIconClick()">
       <span class="text-3xl">🛒</span>
-      <span *ngIf="cartItemCount$ | async as count" class="absolute -top-2 -right-2 bg-red-600 text-black text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center border-2 border-primary-color">
+      <span *ngIf="cartItemCount$ | async as count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center border-2 border-primary-color">
         {{ count }}
+      </span>
+      <span *ngIf="(cartItemCount$ | async) === 0" class="absolute -top-2 -right-2 bg-gray-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center border-2 border-primary-color">
+        0
       </span>
     </a>
   </div>

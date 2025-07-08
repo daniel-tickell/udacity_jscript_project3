@@ -1,5 +1,9 @@
-<app-header></app-header>
-<app-cart></app-cart>
-<main class="container mx-auto p-4">
-  <router-outlet></router-outlet>
-</main>
+<app-header (toggleSidebar)="toggleCartSidebar()"></app-header>
+<div class="main-content-layout">
+  <main class="product-list-area" [class.full-width]="!showCartSidebar">
+    <router-outlet></router-outlet>
+  </main>
+  <aside *ngIf="showCartSidebar" class="cart-sidebar-area">
+    <app-cart></app-cart>
+  </aside>
+</div>

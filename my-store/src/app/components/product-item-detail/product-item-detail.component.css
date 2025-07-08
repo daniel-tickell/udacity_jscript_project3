@@ -1,0 +1,84 @@
+.product-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.product-detail-box {
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-dark);
+  transition: color 0.2s ease-in-out;
+  z-index: 1001;
+}
+
+.close-button:hover {
+  color: var(--primary-color);
+}
+
+
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.product-detail-box img {
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .product-detail-box {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .product-detail-box img {
+    max-width: 50%;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-box {
+    padding: 1rem;
+  }
+  .product-detail-box .flex-col {
+    flex-direction: column;
+  }
+}
