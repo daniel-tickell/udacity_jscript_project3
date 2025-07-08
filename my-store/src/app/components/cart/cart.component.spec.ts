@@ -149,8 +149,6 @@ describe('CartComponent', () => {
     const placeOrderButton: HTMLButtonElement = fixture.nativeElement.querySelector('.btn-primary-order');
     expect(placeOrderButton).toBeTruthy('Place Order button not found');
     placeOrderButton.click();
-
-    expect(mockCartService.clearCart).toHaveBeenCalledTimes(1);
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/confirmation']);
   });
 });

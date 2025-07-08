@@ -47,7 +47,6 @@ export class CartComponent implements OnInit {
   }
 
   placeOrder(): void {
-    this.cartService.clearCart();
     this.router.navigate(['/confirmation']);
   }
 }
