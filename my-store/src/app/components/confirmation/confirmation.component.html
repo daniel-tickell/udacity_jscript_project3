@@ -1,66 +1,71 @@
 <div class="container py-6">
   <h2 class="text-3xl font-bold mb-6 text-center">Order Confirmation</h2>
-
   <div class="card p-6 mb-8">
     <p class="text-lg text-center mb-6">Please enter your details to complete the order.</p>
-
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)" class="space-y-4">
       <div>
         <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
-        <input type="text" id="fullName" formControlName="fullName"
+        <input type="text" id="fullName" name="fullName" [(ngModel)]="fullName" required
+               #fullNameModel="ngModel"
                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-        <div *ngIf="f['fullName'].invalid && f['fullName'].touched" class="text-red-500 text-xs italic mt-1">
-          <div *ngIf="f['fullName'].errors?.['required']">Full Name is required.</div>
+        <div *ngIf="fullNameModel.invalid && fullNameModel.touched" class="text-red-500 text-xs italic mt-1">
+          <div *ngIf="fullNameModel.errors?.['required']">Full Name is required.</div>
         </div>
       </div>
-
       <div>
         <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address:</label>
-        <input type="text" id="address" formControlName="address"
+        <input type="text" id="address" name="address" [(ngModel)]="address" required
+               #addressModel="ngModel"
                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-        <div *ngIf="f['address'].invalid && f['address'].touched" class="text-red-500 text-xs italic mt-1">
-          <div *ngIf="f['address'].errors?.['required']">Address is required.</div>
+        <div *ngIf="addressModel.invalid && addressModel.touched" class="text-red-500 text-xs italic mt-1">
+          <div *ngIf="addressModel.errors?.['required']">Address is required.</div>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
           <label for="city" class="block text-gray-700 text-sm font-bold mb-2">City:</label>
-          <input type="text" id="city" formControlName="city"
+          <input type="text" id="city" name="city" [(ngModel)]="city" required
+                 #cityModel="ngModel"
                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <div *ngIf="f['city'].invalid && f['city'].touched" class="text-red-500 text-xs italic mt-1">
-            <div *ngIf="f['city'].errors?.['required']">City is required.</div>
+          <div *ngIf="cityModel.invalid && cityModel.touched" class="text-red-500 text-xs italic mt-1">
+            <div *ngIf="cityModel.errors?.['required']">City is required.</div>
           </div>
         </div>
         <div>
           <label for="state" class="block text-gray-700 text-sm font-bold mb-2">State:</label>
-          <input type="text" id="state" formControlName="state" maxlength="2"
+          <input type="text" id="state" name="state" [(ngModel)]="state" required minlength="2" maxlength="2" pattern="^[A-Z]{2}$"
+                 #stateModel="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <div *ngIf="f['state'].invalid && f['state'].touched" class="text-red-500 text-xs italic mt-1">
-            <div *ngIf="f['state'].errors?.['required']">State is required.</div>
-            <div *ngIf="f['state'].errors?.['minlength'] || f['state'].errors?.['maxlength']">State must be 2 characters.</div>
+          <div *ngIf="stateModel.invalid && stateModel.touched" class="text-red-500 text-xs italic mt-1">
+            <div *ngIf="stateModel.errors?.['required']">State is required.</div>
+            <div *ngIf="stateModel.errors?.['minlength'] || stateModel.errors?.['maxlength']">State must be 2 characters.</div>
+            <div *ngIf="stateModel.errors?.['pattern']">State must be two capital letters (e.g., NY).</div>
+            {{ stateModel.errors | json }}
           </div>
         </div>
         <div>
           <label for="zipCode" class="block text-gray-700 text-sm font-bold mb-2">Zip Code:</label>
-          <input type="text" id="zipCode" formControlName="zipCode"
+          <input type="text" id="zipCode" name="zipCode" [(ngModel)]="zipCode" required pattern="^\d{5}(-\d{4})?$"
+                 #zipCodeModel="ngModel" [ngModelOptions]="{ updateOn: 'blur' }"
                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <div *ngIf="f['zipCode'].invalid && f['zipCode'].touched" class="text-red-500 text-xs italic mt-1">
-            <div *ngIf="f['zipCode'].errors?.['required']">Zip Code is required.</div>
-            <div *ngIf="f['zipCode'].errors?.['pattern']">Invalid Zip Code format.</div>
+          <div *ngIf="zipCodeModel.invalid && zipCodeModel.touched" class="text-red-500 text-xs italic mt-1">
+            <div *ngIf="zipCodeModel.errors?.['required']">Zip Code is required.</div>
+            <div *ngIf="zipCodeModel.errors?.['pattern']">Invalid Zip Code format (e.g., 12345 or 12345-6789).</div>
           </div>
         </div>
       </div>
       <div>
         <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-        <input type="email" id="email" formControlName="email"
+        <input type="email" id="email" name="email" [(ngModel)]="email" required email
+               #emailModel="ngModel"
                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-        <div *ngIf="f['email'].invalid && f['email'].touched" class="text-red-500 text-xs italic mt-1">
-          <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
-          <div *ngIf="f['email'].errors?.['email']">Please enter a valid email address.</div>
+        <div *ngIf="emailModel.invalid && emailModel.touched" class="text-red-500 text-xs italic mt-1">
+          <div *ngIf="emailModel.errors?.['required']">Email is required.</div>
+          <div *ngIf="emailModel.errors?.['email']">Please enter a valid email address.</div>
         </div>
       </div>
       <div class="flex justify-center pt-4">
-        <button type="submit" class="btn btn-primary bg-secondary-color hover:bg-green-600">Complete Order</button>
+        <button type="submit" [disabled]="orderForm.invalid" class="btn btn-primary bg-secondary-color hover:bg-green-600">Complete Order</button>
       </div>
     </form>
   </div>

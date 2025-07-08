@@ -20,6 +20,7 @@ export class ProductItemComponent {
   onAddToCart(): void {
     this.cartService.addToCart(this.product);
     console.log(`Added ${this.product.name} to cart!`);
+    alert(`${this.product.name} Added to Cart`);
   }
 
   onViewDetailsClick(): void {

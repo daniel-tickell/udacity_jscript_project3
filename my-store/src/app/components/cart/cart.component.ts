@@ -32,10 +32,12 @@ export class CartComponent implements OnInit {
 
   increaseQuantity(item: CartItem): void {
     this.cartService.updateItemQuantity(item.id, item.quantity + 1);
+    alert(`${item.name} quantity increased to ${item.quantity}`);
   }
 
   decreaseQuantity(item: CartItem): void {
     this.cartService.updateItemQuantity(item.id, item.quantity - 1);
+    alert(`${item.name} quantity decreased to ${item.quantity}`);
   }
 
   removeItem(productId: number): void {
