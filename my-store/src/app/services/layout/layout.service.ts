@@ -5,13 +5,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LayoutService {
-  private _showCartSidebar = new BehaviorSubject<boolean>(true);
+  private _showCartSidebar = new BehaviorSubject<boolean>(false);
   public showCartSidebar$: Observable<boolean> = this._showCartSidebar.asObservable();
 
   constructor() { }
 
   toggleCartSidebar(): void {
-    this._showCartSidebar.next(!this._showCartSidebar.getValue());
+    const currentValue = this._showCartSidebar.getValue();
+    this._showCartSidebar.next(!currentValue);
   }
 
   showCartSidebar(): void {
