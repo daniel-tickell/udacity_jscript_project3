@@ -18,10 +18,10 @@
             </div>
           </div>
           <div class="flex items-center space-x-2">
-            <button (click)="decreaseQuantity(item)" class="btn btn-outline p-1 w-8 h-8 flex items-center justify-center">-</button>
-            <span class="font-bold">{{ item.quantity }}</span>
-            <button (click)="increaseQuantity(item)" class="btn btn-secondary-add p-1 w-8 h-8 flex items-center justify-center">+</button>
-            <button (click)="removeItem(item)" class="btn btn-secondary-rem p-1 ml-2">Remove</button>
+            <button (click)="increaseQuantity(item)" class="btn btn-outline p-1 cart-qty-button flex items-center justify-center">+</button>
+            <span class="text-lg font-semibold">{{ item.quantity }}</span>
+            <button (click)="decreaseQuantity(item)" class="btn btn-outline p-1 cart-qty-button flex items-center justify-center">-</button>
+            <button (click)="removeItem(item)" class="btn bg-secondary-color-red p-1 ml-2">Remove</button>
           </div>
         </div>
       </div>
@@ -32,8 +32,8 @@
           <p class="text-2xl font-bold text-primary-color">Total Price: ${{ cartTotalPrice$ | async | number:'1.2-2' }}</p>
         </div>
         <div class="flex space-x-4">
-          <button (click)="clearCart()" class="btn btn-primary-clear bg-red-600 hover:bg-red-700">Clear Cart</button>
-          <button (click)="placeOrder()" class="btn btn-primary-order bg-primary-color hover:bg-blue-700">Place Order</button>
+          <button (click)="clearCart()" class="btn btn-primary-red bg-secondary-color-red hover:bg-green-600">Clear Cart</button>
+          <button (click)="placeOrder()" class="btn btn-primary bg-secondary-color hover:bg-green-700">Place Order</button>
         </div>
       </div>
     </div>

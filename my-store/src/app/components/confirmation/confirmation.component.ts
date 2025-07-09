@@ -44,6 +44,10 @@ export class ConfirmationComponent implements OnInit {
     console.log('Validating State (triggered by ngModelChange):', this.email);
   }
 
+  returnToProducts(): void {
+    this.router.navigate(['/']);
+  }
+
   onSubmit(form: any): void {
   if (form.valid) {
       const orderDetails = {

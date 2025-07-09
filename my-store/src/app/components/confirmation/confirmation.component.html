@@ -65,6 +65,7 @@
       </div>
       <div class="flex justify-center pt-4">
         <button type="submit" [disabled]="orderForm.invalid" class="btn btn-primary bg-secondary-color hover:bg-green-600">Complete Order</button>
+        <button class="btn btn-primary bg-secondary-color hover:bg-green-600" (click)="returnToProducts()">Return to Products</button>
       </div>
     </form>
   </div>
