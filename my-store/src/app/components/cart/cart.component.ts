@@ -40,12 +40,14 @@ export class CartComponent implements OnInit {
     alert(`${item.name} quantity decreased to ${item.quantity}`);
   }
 
-  removeItem(productId: number): void {
-    this.cartService.removeFromCart(productId);
+  removeItem(item: CartItem): void {
+    this.cartService.removeFromCart(item.id);
+    alert(`${item.name} removed from Cart`);
   }
 
   clearCart(): void {
     this.cartService.clearCart();
+    alert(`All Items removed from Cart`);
   }
 
   placeOrder(): void {
